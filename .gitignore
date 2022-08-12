@@ -102,3 +102,14 @@ dist
 
 # TernJS port file
 .tern-port
+
+# idea files
+.idea/
+
+# expo for react native
+.expo
+.expo-shared
+
+# tags
+tags
+
