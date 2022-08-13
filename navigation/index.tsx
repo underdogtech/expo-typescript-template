@@ -7,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
 
@@ -28,13 +29,37 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
     </NavigationContainer>
   );
 }
+// You can swap out BottomTabNavigator (aka RootNavigator) for TopTabNavigator
+      // <TopTabNavigator />
+
+/**
+ * A top tab navigator
+ * https://reactnavigation.org/docs/
+ */
+const Tab = createMaterialTopTabNavigator()
+// const Stack = createNativeStackNavigator()
+// const Drawer = createDrawerNavigator();
+function TopTabNavigator() {
+  return (
+              <Tab.Navigator
+                initialRouteName="TabOne"
+                screenOptions={{
+                  tabBarLabelStyle: { fontSize: 14, color: 'white' },
+                  tabBarIndicatorStyle: { backgroundColor: 'cyan', height: 4 },
+                  tabBarStyle: { backgroundColor: 'firebrick' }
+                }}
+              >
+                <Tab.Screen name="TabOne" component={TabOneScreen} />
+                <Tab.Screen name="TabTwo" component={TabTwoScreen} />
+              </Tab.Navigator>
+  );
+}
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
  * https://reactnavigation.org/docs/modal
  */
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
 function RootNavigator() {
   return (
     <Stack.Navigator>
